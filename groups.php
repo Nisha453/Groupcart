@@ -1,6 +1,11 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <?php
 require_once('dbconnection.php');
-$user_id = 1;
+$user_id = $_GET['user_id'];
 $groups = get_all_groups();
 
 // print_r($items);
@@ -10,10 +15,10 @@ while ($group = $groups->fetch_assoc()) {// print_r($item);
     ?>
 
 
-      <div><?php echo $group['name']?></div>
+      <div><?php echo $group['group_name']?></div>
       <div><?php echo $group['description']?></div>
       <?php if($check_subscribed){
-       $link = "/groupcart/items.php?group_id=".$group['group_id'];?>
+       $link = "/groupcart/items.php?group_id=".$group['group_id']."&user_id=".$user_id;?>
                 <input type="button" value = "Subscribed"  disabled>
                   <!-- <input type="button" value = "Subscribe" onclick="add_user_to_group(<?php echo $user_id ?>,<?php echo $group['group_id'] ?>)"> -->
                 <a href="<?php echo $link;?>"> View </a>
